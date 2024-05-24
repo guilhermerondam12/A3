@@ -6,7 +6,7 @@ public class Cliente {
 
     private String nome, genero, tipoPlano;
     private int id, idade;
-    private long telefone;
+    private long telefone, cpf;
     private double precoPlano;
     private static int contador = 1;
     // Construtores de objetos
@@ -14,11 +14,12 @@ public class Cliente {
         id = contador++;
     }
 
-    public Cliente(String nome, int idade) {
+    public Cliente(String nome, String genero, int idade, long cpf, long telefone) {
         this.nome = nome;
         this.genero = genero;
         this.tipoPlano = tipoPlano;
         this.idade = idade;
+        this.cpf = cpf;
         this.telefone = telefone;
         id = contador++;
     }
@@ -112,7 +113,9 @@ public class Cliente {
     @Override
     public String toString() {
         
-        return "Seu nome é: " + this.nome + "\nO plano mais indicado para o senhor é: " + this.definePlano() + "\nO valor do plano adequado ao senhor é: " + this.defineValor();
+        return "Seu identificador (ID): " + this.id + "\nSeu nome é: " + this.nome + "\nGenero: " + this.genero + "\nIdade: " + this.idade + "\nCPF: " + this.cpf + "\nTelefone para contato " + this.telefone +
+                "\nO plano mais indicado para o senhor é: " + this.definePlano() + "\nO valor do plano adequado ao senhor é: " + this.defineValor();
+        
     }
 
 }
