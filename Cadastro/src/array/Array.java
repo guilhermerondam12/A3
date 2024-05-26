@@ -44,7 +44,7 @@ public class Array {
     
     public void atualizarCliente(int id, String novoNome, String novoGenero, int novaIdade, long novoCpf, long novoTelefone) {
         int index = encontrarIndicePorId(id);
-        if (index != -1) {
+        if (index  != -1) {
             cliente[index].setNome(novoNome);
             cliente[index].setGenero(novoGenero);
             cliente[index].setIdade(novaIdade);
