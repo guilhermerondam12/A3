@@ -39,15 +39,8 @@ public class Array {
             System.out.println("Cliente não encontrado.");
         }
     }
-
     
-    // exibe os dados de todos os clientes cadastrados no array
-
-    public void exibeDados() {
-        for (int i = 0 ; i < contador ; i++) {
-        System.out.println(cliente[i]);
-        }
-    }
+    // metodo para atualizar os dados referente ao ID selecionado
     
     public void atualizarCliente(int id, String novoNome, String novoGenero, int novaIdade, long novoCpf, long novoTelefone) {
         int index = encontrarIndicePorId(id);
@@ -74,12 +67,14 @@ public class Array {
         }
     }
     
-    // retirar informações da posicao do cliente no array por ID.
-    
-    public int obterPosicaoPorId(int id) {
-        return encontrarIndicePorId(id);
+    // exibe os dados de todos os clientes cadastrados no array
+
+    public void exibeDados() {
+        for (int i = 0 ; i < contador ; i++) {
+        System.out.println(cliente[i]);
+        }
     }
-    
+   
     // encontrar o indice do array pelo ID do cliente.
     
     private int encontrarIndicePorId(int id) {

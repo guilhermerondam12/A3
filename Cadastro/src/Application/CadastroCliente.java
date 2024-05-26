@@ -78,7 +78,8 @@ public class CadastroCliente {
                 System.out.println("Lista de todos os clientes");
                 array.exibeDados();
                 }
-  
+ 
+            
         teclado.close();
     }
 }
