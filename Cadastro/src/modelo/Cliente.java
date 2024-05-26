@@ -24,6 +24,14 @@ public class Cliente {
         id = contador++;
     }
 
+    public long getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(long cpf) {
+        this.cpf = cpf;
+    }
+
     public int getId() {
         return id;
     }
