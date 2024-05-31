@@ -62,7 +62,7 @@ public class CadastroCliente {
                         System.out.println("Digite seu telefone: ");
                         long novoTelefone = teclado.nextLong();
                         array.atualizarCliente(idAtualizar, novoNome, novoGenero, novaIdade, novoCpf, novoTelefone);
-                        System.out.println(array.obterClientePorId(1));
+                        System.out.println(array.obterClientePorId(idAtualizar));
                     } else {
                         System.out.println("Cliente nao encontrado");
                     }

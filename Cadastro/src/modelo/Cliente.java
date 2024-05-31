@@ -97,7 +97,7 @@ public class Cliente {
         String planoAtual = "";
         if (this.idade <= 18) {
             planoAtual = "PLANO JUNIOR";
-        } else if (idade <= 30) {
+        } else if (idade <= 50) {
             planoAtual = "PLANO PLENO";
         } else {
             planoAtual = "PLANO SENIOR";
