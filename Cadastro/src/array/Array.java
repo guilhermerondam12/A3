@@ -1,5 +1,6 @@
 package array;
 
+import javax.swing.JOptionPane;
 import modelo.Cliente;
 
 public class Array {
@@ -25,7 +26,7 @@ public class Array {
         }
         cliente = novoArray;
     }
-
+    
     // metodo que remove os dados do array pelo ID
     
     public void removerObjeto(int id) {
@@ -40,9 +41,11 @@ public class Array {
         }
     }
     
+    
+    
     // metodo para atualizar os dados referente ao ID selecionado
     
-    public void atualizarCliente(int id, String novoNome, String novoGenero, int novaIdade, long novoCpf, long novoTelefone) {
+    public void atualizarCliente(int id, String novoNome, String novoGenero, int novaIdade, String novoCpf, String novoTelefone) {
         int index = encontrarIndicePorId(id);
         if (index  != -1) {
             cliente[index].setNome(novoNome);
@@ -71,7 +74,7 @@ public class Array {
 
     public void exibeDados() {
         for (int i = 0 ; i < contador ; i++) {
-        System.out.println(cliente[i]);
+        JOptionPane.showMessageDialog(null, cliente[i]);
         }
     }
    

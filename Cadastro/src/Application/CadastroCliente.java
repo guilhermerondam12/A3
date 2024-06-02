@@ -8,7 +8,7 @@ public class CadastroCliente {
 
     public static void main(String[] args) {
 
-        Scanner teclado = new Scanner(System.in);
+       /* Scanner teclado = new Scanner(System.in);
         Array array = new Array();
         boolean continuar = true;
 
@@ -164,4 +164,4 @@ public class CadastroCliente {
 
         teclado.close(); */
     }
-}
+} 

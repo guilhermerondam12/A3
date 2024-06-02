@@ -1,20 +1,17 @@
-
 package modelo;
 
 
 public class Cliente {
 
-    private String nome, genero, tipoPlano;
+    private String nome, genero, tipoPlano, cpf, telefone;
     private int id, idade;
-    private long telefone, cpf;
-    private double precoPlano;
     private static int contador = 1;
     // Construtores de objetos
     public Cliente() {
         id = contador++;
     }
 
-    public Cliente(String nome, String genero, int idade, long cpf, long telefone) {
+    public Cliente(String nome, String genero, int idade, String cpf, String telefone, String tipoPlano) {
         this.nome = nome;
         this.genero = genero;
         this.tipoPlano = tipoPlano;
@@ -24,11 +21,11 @@ public class Cliente {
         id = contador++;
     }
 
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -38,14 +35,6 @@ public class Cliente {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public double getPrecoPlano() {
-        return precoPlano;
-    }
-
-    public void setPrecoPlano(double precoPlano) {
-        this.precoPlano = precoPlano;
     }
 
     public int getIdade() {
@@ -83,46 +72,36 @@ public class Cliente {
   
     }
     
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
         
     }
     
-    // Define o plano do cliente com base em sua idade
-    public String definePlano (){
-        String planoAtual = "";
-        if (this.idade <= 18) {
-            planoAtual = "PLANO JUNIOR";
-        } else if (idade <= 50) {
-            planoAtual = "PLANO PLENO";
+     public String defineValor () {
+         String valorAtual = "";
+        if ("Plano Junior".equals(tipoPlano)) {
+            valorAtual = "R$ 330,00";
+        } else if ("Plano Pleno".equals(tipoPlano)) {
+            valorAtual = "R$ 520,00";
         } else {
-            planoAtual = "PLANO SENIOR";
-        }
-        
-        return planoAtual;
-    }
-    
-    public double defineValor () {
-        double valorAtual = 0;
-        if ("PLANO JUNIOR".equals(tipoPlano)) {
-            valorAtual = 230.00;
-        } else if (idade <= 30) {
-            valorAtual = 480.00;
-        } else {
-            valorAtual = 890.00;
+            valorAtual = "R$ 890,00";
         }
         return valorAtual;
     }
+     
+
+    
+    // Define o plano do cliente com base em sua idade
     
     @Override
     public String toString() {
         
-        return "Seu identificador (ID): " + this.id + "\nSeu nome é: " + this.nome + "\nGenero: " + this.genero + "\nIdade: " + this.idade + "\nCPF: " + this.cpf + "\nTelefone para contato " + this.telefone +
-                "\nO plano mais indicado para o senhor é: " + this.definePlano() + "\nO valor do plano adequado ao senhor é: " + this.defineValor();
+        return "Seu identificador (ID): " + this.id + "\nSeu nome é: " + this.nome + "\nGenero: " + this.genero + "\nIdade: " + this.idade + "\nCPF: " + this.cpf + "\nTelefone para contato " + this.telefone
+                ;
         
     }
 
