@@ -3,6 +3,7 @@ package array;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
+
 public class Array {
 
     private Cliente[] cliente = new Cliente[1];
@@ -26,7 +27,6 @@ public class Array {
         }
         cliente = novoArray;
     }
-    
     // metodo que remove os dados do array pelo ID
     
     public void removerObjeto(int id) {
@@ -36,8 +36,9 @@ public class Array {
                 cliente[i] = cliente[i + 1];
             }
             cliente[--contador] = null;
+            JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso!");
         } else {
-            System.out.println("Cliente não encontrado.");
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
         }
     }
     
@@ -45,7 +46,7 @@ public class Array {
     
     // metodo para atualizar os dados referente ao ID selecionado
     
-    public void atualizarCliente(int id, String novoNome, String novoGenero, int novaIdade, String novoCpf, String novoTelefone) {
+    public void atualizarCliente(int id, String novoNome, String novoGenero, String novaIdade, String novoCpf, String novoTelefone, String novoTipoPlano) {
         int index = encontrarIndicePorId(id);
         if (index  != -1) {
             cliente[index].setNome(novoNome);
@@ -53,8 +54,9 @@ public class Array {
             cliente[index].setIdade(novaIdade);
             cliente[index].setCpf(novoCpf);
             cliente[index].setTelefone(novoTelefone);
+            cliente[index].setTipoPlano(novoTipoPlano);
         } else {
-            System.out.println("Cliente não encontrado.");
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
         }
     }
     
@@ -65,7 +67,7 @@ public class Array {
         if (index != -1) {
             return cliente[index];
         } else {
-            System.out.println("Cliente não encontrado.");
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
             return null;
         }
     }
@@ -74,7 +76,7 @@ public class Array {
 
     public void exibeDados() {
         for (int i = 0 ; i < contador ; i++) {
-        JOptionPane.showMessageDialog(null, cliente[i]);
+            JOptionPane.showMessageDialog(null, cliente[i]);
         }
     }
    

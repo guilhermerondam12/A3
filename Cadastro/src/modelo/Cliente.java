@@ -3,15 +3,15 @@ package modelo;
 
 public class Cliente {
 
-    private String nome, genero, tipoPlano, cpf, telefone;
-    private int id, idade;
+    private String nome, genero, tipoPlano, cpf, telefone, idade;
+    private int id;
     private static int contador = 1;
     // Construtores de objetos
     public Cliente() {
         id = contador++;
     }
 
-    public Cliente(String nome, String genero, int idade, String cpf, String telefone, String tipoPlano) {
+    public Cliente(String nome, String genero, String idade, String cpf, String telefone, String tipoPlano) {
         this.nome = nome;
         this.genero = genero;
         this.tipoPlano = tipoPlano;
@@ -37,11 +37,11 @@ public class Cliente {
         this.id = id;
     }
 
-    public int getIdade() {
+    public String getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
+    public void setIdade(String idade) {
         this.idade = idade;
         
     }
@@ -87,8 +87,10 @@ public class Cliente {
             valorAtual = "R$ 330,00";
         } else if ("Plano Pleno".equals(tipoPlano)) {
             valorAtual = "R$ 520,00";
-        } else {
+        } else if ("Plano Senior".equals(tipoPlano)) {
             valorAtual = "R$ 890,00";
+        } else {
+            valorAtual = "Sem identificação de plano, não é definido o valor";
         }
         return valorAtual;
     }
@@ -100,7 +102,8 @@ public class Cliente {
     @Override
     public String toString() {
         
-        return "Seu identificador (ID): " + this.id + "\nSeu nome é: " + this.nome + "\nGenero: " + this.genero + "\nIdade: " + this.idade + "\nCPF: " + this.cpf + "\nTelefone para contato " + this.telefone
+        return "Seu identificador (ID): " + this.id + "\nSeu nome é: " + this.nome + "\nGenero: " + this.genero + "\nIdade: " + this.idade + "\nCPF: " + this.cpf + "\nTelefone para contato " + this.telefone + 
+                "\nPlano escolhido: " + this.tipoPlano + "\nO valor do seu plano é: " + defineValor()
                 ;
         
     }
