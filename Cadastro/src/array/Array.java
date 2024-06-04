@@ -67,8 +67,9 @@ public class Array {
         if (index != -1) {
             return cliente[index];
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
-            return null;
+            // JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+            //return null;
+            throw new IllegalArgumentException("Cliente não encontrado!");
         }
     }
     
