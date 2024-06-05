@@ -79,11 +79,11 @@ public class Cliente {
     
      public String defineValor () {
          String valorAtual = "";
-        if ("Plano Junior".equals(tipoPlano)) {
+        if ("Plano Shield Junior".equals(tipoPlano)) {
             valorAtual = "R$ 330,00";
-        } else if ("Plano Pleno".equals(tipoPlano)) {
+        } else if ("Plano Shield Pleno".equals(tipoPlano)) {
             valorAtual = "R$ 520,00";
-        } else if ("Plano Senior".equals(tipoPlano)) {
+        } else if ("Plano Shield Senior".equals(tipoPlano)) {
             valorAtual = "R$ 890,00";
         } else {
             valorAtual = "Sem identificação de plano, não é definido o valor";

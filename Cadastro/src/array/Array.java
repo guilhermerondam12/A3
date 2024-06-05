@@ -3,7 +3,6 @@ package array;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
-
 public class Array {
 
     private Cliente[] cliente = new Cliente[1];
@@ -11,6 +10,7 @@ public class Array {
 
     /**
      * Cadastra um paciente armazenando na lista
+     *
      * @param paciente
      */
     public void cadastrarCliente(Cliente paciente) {
@@ -19,7 +19,6 @@ public class Array {
     }
 
     // metodo para redimensionar o array.
-    
     public void redimensionarObjeto() {
         Cliente[] novoArray = new Cliente[cliente.length + 1];
         for (int i = 0; i < cliente.length; i++) {
@@ -28,7 +27,7 @@ public class Array {
         cliente = novoArray;
     }
     // metodo que remove os dados do array pelo ID
-    
+
     public void removerObjeto(int id) {
         int index = encontrarIndicePorId(id);
         if (index != -1) {
@@ -36,53 +35,40 @@ public class Array {
                 cliente[i] = cliente[i + 1];
             }
             cliente[--contador] = null;
-            JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cadastro removido com sucesso!", "Remover", JOptionPane.PLAIN_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado!", "ERRO", JOptionPane.PLAIN_MESSAGE);
         }
     }
-    
-    
-    
+
     // metodo para atualizar os dados referente ao ID selecionado
-    
     public void atualizarCliente(int id, String novoNome, String novoGenero, String novaIdade, String novoCpf, String novoTelefone, String novoTipoPlano) {
         int index = encontrarIndicePorId(id);
-        if (index  != -1) {
+        if (index != -1) {
             cliente[index].setNome(novoNome);
             cliente[index].setGenero(novoGenero);
             cliente[index].setIdade(novaIdade);
             cliente[index].setCpf(novoCpf);
             cliente[index].setTelefone(novoTelefone);
             cliente[index].setTipoPlano(novoTipoPlano);
+        } else if (index == 0){
+            JOptionPane.showMessageDialog(null, "Não existe identificador zero", "ERRO", JOptionPane.PLAIN_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
+            JOptionPane.showMessageDialog(null, "Cliente não encontrado", "ERRO", JOptionPane.PLAIN_MESSAGE);
         }
     }
-    
+
     // ira buscar informações do cliente pelo ID
-    
     public Cliente obterClientePorId(int id) {
         int index = encontrarIndicePorId(id);
         if (index != -1) {
             return cliente[index];
         } else {
-            // JOptionPane.showMessageDialog(null, "Cliente não encontrado!");
-            //return null;
             throw new IllegalArgumentException("Cliente não encontrado!");
         }
     }
-    
-    // exibe os dados de todos os clientes cadastrados no array
 
-    public void exibeDados() {
-        for (int i = 0 ; i < contador ; i++) {
-            JOptionPane.showMessageDialog(null, cliente[i]);
-        }
-    }
-   
     // encontrar o indice do array pelo ID do cliente.
-    
     private int encontrarIndicePorId(int id) {
         for (int i = 0; i < contador; i++) {
             if (cliente[i].getId() == id) {
@@ -91,5 +77,5 @@ public class Array {
         }
         return -1;
     }
-    
+
 }

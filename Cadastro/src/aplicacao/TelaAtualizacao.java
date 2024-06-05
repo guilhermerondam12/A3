@@ -1,21 +1,20 @@
-
 package aplicacao;
 
 import array.Array;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 
-
 public class TelaAtualizacao extends javax.swing.JInternalFrame {
+
     Array array = new Array();
     int clienteId;
-    
+
     public TelaAtualizacao(Array array, int clienteId) {
         this.array = array;
         this.clienteId = clienteId;
         initComponents();
+        preencherCampos();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,8 +38,9 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         cbPlanosAt = new javax.swing.JComboBox<>();
         btnSalvar = new javax.swing.JButton();
-        btnSair = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        tfId = new javax.swing.JTextField();
 
         setClosable(true);
         setTitle("Atualização");
@@ -216,10 +216,11 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("ID Selecionado");
+
+        tfId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
+                tfIdActionPerformed(evt);
             }
         });
 
@@ -227,11 +228,23 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -251,11 +264,7 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSalvar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnSair)
-                                .addGap(23, 23, 23))
+                            .addComponent(btnSalvar)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -276,10 +285,8 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalvar)
-                    .addComponent(btnSair))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(btnSalvar)
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,25 +299,40 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
     private void ftfTelefoneAtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftfTelefoneAtActionPerformed
 
     }//GEN-LAST:event_ftfTelefoneAtActionPerformed
-    
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
 
-        /*String novoNome = tftNomeAt.getText();
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        String novoNome = tftNomeAt.getText();
+        String novoGenero = (String) cbSexoAt.getSelectedItem();
         String novaIdade = ftfDataAt.getText();
         String novoCpf = ftfCpfAt.getText();
-        String novoGenero = (String) cbSexoAt.getSelectedItem();
         String novoTelefone = ftfTelefoneAt.getText();
         String novoTipoPlano = (String) cbPlanosAt.getSelectedItem();
-        array.atualizarCliente(idAtualizar, novoNome, novoGenero, novaIdade, novoCpf, novoTelefone, novoTipoPlano); */
+        // Atualiza o cliente com os dados fornecidos
+        array.atualizarCliente(clienteId, novoNome, novoGenero, novaIdade, novoCpf, novoTelefone, novoTipoPlano);
+        JOptionPane.showMessageDialog(null, "Cliente com ID " + clienteId + " atualizado.\n");
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-           System.exit(0);
-    }//GEN-LAST:event_btnSairActionPerformed
+    private void tfIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdActionPerformed
+        tfId.setEditable(false);
+    }//GEN-LAST:event_tfIdActionPerformed
 
+    private void preencherCampos () {
+        Cliente cliente = array.obterClientePorId(clienteId);
+        if (cliente != null) {
+           tfId.setText(String.valueOf(cliente.getId()));
+           tftNomeAt.setText(cliente.getNome());
+           cbSexoAt.setSelectedItem(cliente.getGenero());
+           ftfDataAt.setText(cliente.getIdade());
+           ftfCpfAt.setText(cliente.getCpf());
+           ftfTelefoneAt.setText(cliente.getTelefone());
+           cbPlanosAt.setSelectedItem(cliente.getTipoPlano());
+        } else {
+            JOptionPane.showMessageDialog(null, "Cliente com ID " + clienteId + "não encontrado", "ERRO", JOptionPane.PLAIN_MESSAGE);
+        }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cbPlanosAt;
     private javax.swing.JComboBox<String> cbSexoAt;
@@ -324,11 +346,13 @@ public class TelaAtualizacao extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JTextField tfId;
     private javax.swing.JTextField tftNomeAt;
     // End of variables declaration//GEN-END:variables
 }

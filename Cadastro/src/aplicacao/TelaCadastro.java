@@ -95,7 +95,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3)
                     .addComponent(ftfCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,7 +168,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Planos ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        cbPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o plano", "Plano Junior", "Plano Pleno", "Plano Senior" }));
+        cbPlanos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o plano", "Plano Shield Junior", "Plano Shield Pleno", "Plano Shield Senior" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -252,7 +252,7 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,9 +304,7 @@ public class TelaCadastro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -322,7 +320,7 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_ftfTelefoneActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        String entrada = JOptionPane.showInputDialog("Digite o identificador (ID) que deseja remover os dados: ");
+        String entrada = JOptionPane.showInputDialog(null, "Digite o identificador (ID) que deseja remover os dados: ", "Buscar ID", JOptionPane.PLAIN_MESSAGE);
         int id = Integer.parseInt(entrada);
         if (id == 0) {
             JOptionPane.showMessageDialog(null, "Não existe identificador zero!");
@@ -332,17 +330,17 @@ public class TelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnExibirIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirIdActionPerformed
-        String entrada = JOptionPane.showInputDialog("Digite o identificador (ID) para verificar as informações: ");
+        String entrada = JOptionPane.showInputDialog(null, "Digite o identificador (ID) para verificar as informações: ", "Buscar ID", JOptionPane.PLAIN_MESSAGE);
         int id = Integer.parseInt(entrada);
         if (id != 0) {
             try {
                 JOptionPane.showMessageDialog(null, array.obterClientePorId(id));
-            } catch (IllegalArgumentException e) {
-                JOptionPane.showMessageDialog(null, e.getMessage());
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Não existe identificador zero!");
+            JOptionPane.showMessageDialog(null, "Não existe identificador zero!", "ERRO", JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_btnExibirIdActionPerformed
 
@@ -351,30 +349,33 @@ public class TelaCadastro extends javax.swing.JFrame {
         if (idStr != null && !idStr.isEmpty()) {
             try {
                 int id = Integer.parseInt(idStr);
-                TelaAtualizacao telaAtualizar = new TelaAtualizacao();
+                TelaAtualizacao telaAtualizar = new TelaAtualizacao(array, id);
                 jDesktopPane1.add(telaAtualizar);
                 telaAtualizar.setVisible(true);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "ID invalido");
+            } catch (IllegalArgumentException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         } else {
-            JOptionPane.showMessageDialog(null, "ID nao pode ser vazio");
+            JOptionPane.showMessageDialog(null, "Não existe identificador zero!", "ERRO", JOptionPane.PLAIN_MESSAGE);
         }
 
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (tftNome.getText().isEmpty() || ftfData.getText().isEmpty() || ftfCpf.getText().isEmpty() || ftfTelefone.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String nome = tftNome.getText();
+            String idade = ftfData.getText();
+            String cpf = ftfCpf.getText();
+            String genero = (String) cbSexo.getSelectedItem();
+            String telefone = ftfTelefone.getText();
+            String tipoPlano = (String) cbPlanos.getSelectedItem();
 
-        String nome = tftNome.getText();
-        String idade = ftfData.getText();
-        String cpf = ftfCpf.getText();
-        String genero = (String) cbSexo.getSelectedItem();
-        String telefone = ftfTelefone.getText();
-        String tipoPlano = (String) cbPlanos.getSelectedItem();
-
-        array.cadastrarCliente(new Cliente(nome, genero, idade, cpf, telefone, tipoPlano));
-        JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-        limparDados();
+            array.cadastrarCliente(new Cliente(nome, genero, idade, cpf, telefone, tipoPlano));
+            JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!", "Cadastro", JOptionPane.PLAIN_MESSAGE);
+            limparDados();
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
